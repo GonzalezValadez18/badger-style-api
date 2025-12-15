@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ResetPasswordController;
-use Illuminate\Support\Facades\Artisan;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,8 +16,4 @@ Route::get('password/reset/success', function () {
 
 
 
-Route::get('/run-migrations', function () {
-    Artisan::call('migrate --force');
-    return Artisan::output();
-});
 
