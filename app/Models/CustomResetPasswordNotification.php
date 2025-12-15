@@ -36,11 +36,9 @@ class CustomResetPasswordNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-  
-        $frontendUrl = config('app.frontend_url', url('/'));
-
-        // Construimos la URL completa para el frontend
-        $url = $frontendUrl . '/reset-password?token=' . $this->token . '&email=' . urlencode($notifiable->getEmailForPasswordReset());
+        // Construimos la URL web completa manualmente para apuntar a la vista de restablecimiento.
+        // Esto evita conflictos con las rutas de la API.
+        $url = config('app.url') . '/password/reset/' . $this->token . '?email=' . urlencode($notifiable->getEmailForPasswordReset());
 
         return (new MailMessage)
                     ->subject('Restablecer tu Contraseña')
