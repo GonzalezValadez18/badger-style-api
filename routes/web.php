@@ -16,8 +16,9 @@ Route::get('password/reset/success', function () {
 })->name('password.reset.success');
 
 
-Route::get('/deploy-migrate', function () {
+
+Route::get('/run-migrations', function () {
     Artisan::call('migrate --force');
-    Artisan::call('db:seed --force');
-    return 'Migraciones y seeders ejecutados correctamente';
+    return Artisan::output();
 });
+
